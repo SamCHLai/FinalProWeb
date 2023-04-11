@@ -1,0 +1,153 @@
+*{/* 位置滿版 */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+    background-color:#ffffff;
+  }
+  /* 導覽列 */
+  .main-header{
+    position:fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 1;/* 將導覽列的層級設為1就不會被輪播圖覆蓋 */
+    
+  }
+  .main-header .Logo{
+    width: 50px;
+    display: flex;/* 並排Logo & 文字 */
+    text-decoration: none;/* 連結去底線 */
+    font-family:Franklin Gothic Medium;/* 字型 */
+  }
+  .main-header .Logo img{
+    width: 100%;
+    vertical-align: middle;/* 垂直對齊：中間 */
+  }
+  .Logo h2{
+    margin-left: 5px;
+    font-size: 2em;
+    color: #000000;
+    text-shadow: 2px 0px 0px #f6a122;/* 文字外框 */
+  }
+  .container{
+    display: flex;/* 並排 */
+    padding: 20px;
+    max-width: 100%;
+    margin: auto;/* 將覽導列自動放到正中間 */
+    align-items: center;/* 容器內所有項目對齊中間 */
+    background-color: rgba(222, 222, 222, 0.4);/* 導覽列透明0~1之間 */
+    text-shadow: 0px 0px 1px #ffffff;/* 文字外框 */
+  }
+  .navbar{
+    margin: auto;/* 把空間分配給類別內的值 */
+    font-size: 20px;
+    font-weight: bold;/* 粗體文字 */
+    
+  }
+  .navbar a{
+    text-decoration: none;/* 連結去底線 */
+    padding-left: 30px;/* 連結的左邊空間+30px */
+    padding-right: 30px;/* 連結的右邊空間+30px */
+    color: rgb(0, 0, 0);
+  }
+  .navbar a:hover{
+    border-bottom:5px solid #FFDEAD;
+  }
+  .container ul{
+    list-style-type: none;/* 去標記點 */
+    display: flex;
+    margin-bottom: 0;
+  }
+  .container ul li{
+    margin: 10px;
+  }
+  .container ul li a{
+    text-decoration: none;/* 連結去底線 */
+    color: #000000;
+    font-weight: bold;/* 粗體文字 */
+  }
+  body{
+    background-image:url(./Images/image1.jpg);/* 將圖片設成背景 */
+    background-size: cover;  /* 背景圖片按比例放大，填滿整個元素 */
+    background-repeat: no-repeat;  /* 防止背景圖片重複顯示 */
+    display: flex;/* 將登入框設定到最中間 */
+    justify-content: center;/* 水平置中 */
+    align-items: center;/* 垂直置中 */
+    height: 100vh;/* 使body元素佔據整個視窗高度,1vh等於視窗高度的1% */
+  }
+  
+  .login{
+    width: 600px;
+    height: 700px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;/* 邊框圓弧度 */
+    border: 10px solid #000000;/* 邊框 */
+    box-shadow: 0 0 60px #ffffff;/* shadow陰影 */
+    backdrop-filter: blur(3px);/* 毛玻璃效果 */
+    display: flex;/* 設定到最中間 */
+    justify-content: center;/* 水平置中 */
+    align-items: center;/* 垂直置中 */
+  }
+  .form{
+    width: 400px;
+    color: #000000;
+  }
+  .form h2{
+    margin-bottom: 30px;
+  }
+  .form input{
+    width: 100%;
+    border: 1px solid #aaa;
+    line-height: 3;/* 輸入框行高 */
+    border-radius:5px ;/* 邊框圓弧度 */
+    font-size: 16px;/* 輸入文字大小 */
+  }
+  .form .group{
+    margin-bottom: 20px;
+  }
+  .form .btn-group{
+    font-size: 0;
+    margin-top: 50px;
+  }
+  .form .btn{
+    font-size: 20px;
+    border-radius: 5px;/* 邊框圓弧度 */
+    border: none;/* 去邊框 */
+    background-color: #ffbf71;
+    width: 190px;
+    padding: 10px;
+    color:#fff;
+    
+  }
+  .form .btn + .btn{
+    margin-left: 20px;
+  }
+  .form .btn:hover{
+    background-color: #FFDEAD;
+  }
+  .register{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .register a{
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #FFDEAD;
+  }
+  .register a:hover{
+    border-bottom:3px solid #FFDEAD;
+  }
+  .form .logo{
+    position: absolute;
+    display: flex;
+    top: 6ch;
+    right: 30%;
+  }
+  .form .logo p{
+    margin: auto;
+    font-weight: bold;
+    font-size: 20px;
+  }

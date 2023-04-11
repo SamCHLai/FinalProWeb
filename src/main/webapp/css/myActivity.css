@@ -1,0 +1,25 @@
+
+body{
+    background-color:#ffffff;
+  }
+  
+.container2{
+    margin: 60px;
+    width: 1100px;
+    height: 800px;
+    background-color: rgb(161, 151, 113);
+    position: absolute;
+    left: 350px;
+}
+.container2 .items{
+    position: absolute;
+    top: 30px;
+    left: 500px;
+}
+.container2 .input-map{
+    position: absolute;
+    background-color: aqua;
+    width: 1100px;
+    height: 700px;
+    top: 100px;
+}

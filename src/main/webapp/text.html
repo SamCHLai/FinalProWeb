@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>個人資料</title>
+  <!-- 響應式網站 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boostrap 導入程式 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@500&family=Noto+Sans+JP:wght@700&family=Noto+Sans+TC:wght@900&display=swap"
+    rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=BIZ+UDPGothic&family=Noto+Sans+HK:wght@300;500&display=swap" rel="stylesheet">
+  <!-- 連結CSS外部檔案 -->
+  <link rel="stylesheet" href="./src/main/webapp/css/text.css">
+  
+</head>
+
+<body>
+  <!-- sidebar -->
+  <div class="content-sidebar">
+    <nav class="sidebar">
+      <ul>
+        <li class="logo"><img src="./src/main/webapp/Images/logo.png" alt="logo"></li>
+        <li><a href="#" id="sidebar-project">回首頁</a></li>
+        <li><a href="#" id="sidebar-project">會員資料</a></li>
+        <li><a href="#" id="sidebar-project">我的活動</a></li>
+      </ul>
+    </nav>
+  </div>
+  <!-- 會員區塊 -->
+  <div class="container-PI">
+    <div class="PI">
+
+      <!-- 頭像區塊 -->
+      <div class="member-avatar-area">
+        <!--頭像-->
+        <div class="member-avatar">
+          <div class="text-center">
+            <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+              alt="avatar">
+            <h6>更換頭像</h6>
+            <input type="file" class="text-center center-block file-upload select">
+          </div>
+          </hr><br>
+        </div>
+      </div>
+      <!-- 個人資料表 -->
+      <div class="member-area">
+        <div class="member">
+
+          <form>
+
+            <legend>會員資料</legend><br><br>
+            <div class="project">
+              <label for="memberName">會員姓名(暱稱)</label>
+              <input type="text" id="memberName" name="memberName"><br><br>
+            </div>
+            <div class="project">
+              <label for="birthday">生日</label>
+              <input type="date" id="birthday" name="birthday" required><br><br>
+            </div>
+            <div class="project">
+              <label for="account">會員帳號</label>
+              <input type="text" id="account" name="account"><br><br>
+            </div>
+            <div class="project">
+              <label for="email">信箱</label>
+              <input type="email" id="email" name="email"><br><br>
+            </div>
+            <div class="project">
+              <label for="password">會員密碼</label>
+              <input type="password" id="password" name="password" required><br><br>
+            </div>
+            <div class="project">
+              <label for="phoneNumber">手機號碼</label>
+              <input type="text" id="phoneNumber" name="phoneNumber"><br><br>
+            </div>
+            <div>
+              <label for="gender">性別</label>
+              <label for="Mr.">男性</label>
+              <input type="radio" id="" name="" value="" required>
+              <label for="Ms.">女性</label>
+              <input type="radio" id="" name="" value="" required><br><br>
+            </div>
+            <div class="btn-group">
+              <button>儲存</button>
+              <button>取消</button>
+              <button>修改資料</button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+</html>

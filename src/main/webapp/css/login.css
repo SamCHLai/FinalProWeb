@@ -1,0 +1,126 @@
+/* login */
+  body{
+    background-image:url(../Images/img13.jpg);/* 將圖片設成背景 */
+    background-size: cover;  /* 背景圖片按比例放大，填滿整個元素 */
+    background-repeat: no-repeat;  /* 防止背景圖片重複顯示 */
+    height: 100vh;/* 使body元素佔據整個視窗高度,1vh等於視窗高度的1% */
+  }
+  .wrapper{
+    position:relative;/* 父元素 */
+    display: flex;/* 設定到最中間 */
+    justify-content: center;/* 水平置中 */
+    top: 100px;
+    transition: height .2s ease;/* transition過渡0.2秒緩衝 */
+    
+  }
+  .container-login{/* 登入外框 */
+    position: absolute;/* 子元素 */
+    width: 600px;
+    height: 550px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;/* 邊框圓弧度 */
+    border: 10px solid #fff;/* 邊框 */
+    box-shadow: 0 0 60px #000;/* shadow陰影 */
+    backdrop-filter: blur(3px);/* 毛玻璃效果 */
+    display: flex;/* 設定到最中間 */
+    justify-content: center;/* 水平置中 */
+    align-items: center;/* 垂直置中 */
+    margin-top: 50px;
+    overflow: hidden;/* 登入超出視窗隱藏 */
+  }
+  .wrapper .active{
+    height: 700px;
+    
+  }
+  .wrapper .active .login{
+    transition: none;/* 不顯示 */
+    transform: translateX(-550px);
+  }
+  /* ------登入畫面------ */
+  .login{
+    transition: transform .2s ease;/* transition過渡0.2秒緩衝 */
+    transform:  translateX(550);/* transform轉換 */
+  }
+  .form{
+    width: 400px;
+    color: #fff;
+  }
+  .form h1{
+    margin-bottom: 50px;
+    font-family:Franklin Gothic Medium;/* 字型 */
+    font-family: 'Noto Sans JP', sans-serif;/* 預設樣式中文字 */
+  }
+  .form h2{
+    margin-top: -10px ;
+    margin-bottom: 40px;
+    font-family:Franklin Gothic Medium;/* 字型 */
+    font-family: 'Noto Sans JP', sans-serif;/* 預設樣式中文字 */
+  }
+  .form input{
+    width: 100%;
+    border: 1px solid #aaa;
+    line-height: 3;/* 輸入框行高 */
+    border-radius:5px ;/* 邊框圓弧度 */
+    font-size: 16px;/* 輸入文字大小 */
+  }
+  .form .group{
+    margin-bottom: 20px;
+  }
+  .form .btn-group{
+    margin-top: 30px;
+  }
+  .form button{
+    font-size: 20px;
+    border-radius: 5px;/* 邊框圓弧度 */
+    border: none;/* 去邊框 */
+    background-color: #ffbf71;
+    width: 190px;
+    padding: 10px 0;
+    color:#fff;
+    
+  }
+  .form button + button{
+    margin-left: 15px;
+  }
+  .form button:hover{
+    background-color: #FFDEAD;
+  }
+  .form p{
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .form p a{
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #FFDEAD;
+  }
+  .form p a:hover{
+    border-bottom:3px solid #FFDEAD;
+  }
+
+  /* ------註冊畫面------ */
+  .register{
+    position: absolute;/* 子元素 */
+    transform: translateX(550px);
+    transition: none;
+    /* display: none;   */
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .wrapper .active .register{
+    transition: transform .2s ease;/* transition過渡0.2秒緩衝 */
+    transform:  translateX(0);/* transform轉換 */
+  }
+  .register a{
+    margin-left: 10px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #FFDEAD;
+  }
+  .register a:hover{
+    border-bottom:3px solid #FFDEAD;
+  }
+  
+  

@@ -1,0 +1,112 @@
+*{/* 位置滿版 */
+    margin: 0;
+    padding: 0;
+  }
+  /* 導覽列 */
+  .main-header{
+    position:sticky;
+    top: 0px;
+    width: 100%;
+    z-index: 999;/* 將導覽列的層級 */
+  }
+  .container{
+    display: flex;/* 並排 */
+    padding: 5px;
+    padding-right: 0px;
+    max-width: 100%;
+    margin: auto;/* 將覽導列自動放到正中間 */
+    align-items: center;/* 容器內所有項目對齊中間 */
+    background-color: rgba(130, 130, 130, 0.8);/* 導覽列透明0~1之間 */
+    text-shadow: 0px 0px 1px #ffffff;/* 文字外框 */
+  }
+  .main-header .Logo{
+    width: 50px;
+    display: flex;/* 並排Logo & 文字 */
+    text-decoration: none;/* 連結去底線 */
+    font-family:Franklin Gothic Medium;/* 字型 */
+  }
+  .main-header .Logo img{
+    width: 100%;
+    vertical-align: middle;/* 垂直對齊：中間 */
+  }
+  .Logo h2{
+    margin-left: 5px;
+    font-size: 2em;
+    color: #ffffff;
+    text-shadow: 2px 0px 0px #f6a122;/* 文字外框 */
+  }
+  
+  .navbar-text{
+    margin: auto;/* 把空間分配給類別內的值 */
+    font-size: 24px;
+    font-family: 'Noto Sans JP', sans-serif;/* 預設樣式中文字 */
+  }
+  
+  .navbar-text a{
+    border-radius: 20px;/* 邊框圓弧度 */
+    text-shadow: 1px 1px 0 rgb(4, 4, 4); /* 设置文字陰影，颜色為红色，水平偏移量為 1 像素，垂直偏移量為 1 像素 */
+    text-decoration: none;/* 連結去底線 */
+    padding-left: 30px;/* 連結的左邊空間+30px */
+    padding-right: 30px;/* 連結的右邊空間+30px */
+    color: rgb(255, 255, 255);
+  }
+  .navbar-text a:hover{
+    border: 1px solid #ffe2d3cb; /* 設置邊框為 1 像素實線黑色 */
+    background-color: rgb(147, 147, 147);
+    color: #ffffff;
+  }
+  .navbar-nav{
+    margin-right: 70px;
+  }
+  
+  footer {
+      background-color: #ffefde;
+      padding: 20px;
+      text-align: center;/* 文字置中 */
+      position:relative;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;/* 文字並排 */
+    }
+    
+    .footer-section {
+      flex-basis: 23%;
+      margin-bottom: 20px;
+    }
+    
+    .footer-section h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    
+    .footer-section ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 8px;
+    }
+    
+    .footer-section ul li a {
+      color: #666;
+      text-decoration: none;
+    }
+    
+    .footer-section ul li a:hover {
+      color: #000;
+    }
+    .Copyright{
+      height: 30px;
+      align-items: center;/* 類別內所有項目垂直置中  */
+      background-color: #a9a9a990;
+      position: absolute; 
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+    

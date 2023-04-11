@@ -1,0 +1,49 @@
+body{
+    background-color:#ffffff;
+}
+
+.container2{
+    position:relative;/* 相對定位  父元素 */
+    margin-top: 50px;/* margin外邊距 */
+    width: 1500px;
+    height: 700px;
+    background-color: rgb(117, 117, 117);
+    top: 100px;
+    left: 270px;
+    border-radius: 20px;/* 邊框圓弧度 */
+}
+.GroupName{
+    padding-top: 30px;/* padding內邊距 */
+    padding-left: 550px;
+    justify-content: center;/* 對齊置中 */
+}
+.container3{
+    display: flex;
+    padding-top: 20px;
+    justify-content: center;/* 對齊置中 */
+}
+
+.formfile{
+    background-color: rgb(215, 214, 141);
+    width: 600px;
+    height: 400px;
+}
+.btnGroup{
+    display: flex;
+    justify-content: space-around;/* 平均分配寬度和間距 */
+    margin-top: 50px;/* margin外邊距 */
+}
+.btn2{
+    display: flex;
+    justify-content: space-around;
+}
+.btn2 > div{
+    margin-right: 150px;/* 按鈕間距 */
+    
+}
+.place{
+    display:block;
+}
+.member{
+    color: red;
+}
