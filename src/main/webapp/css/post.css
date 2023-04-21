@@ -1,0 +1,102 @@
+body{
+    background-image:url(../Images/img10.jpg);/* 將圖片設成背景 */
+    background-size: cover;  /* 背景圖片按比例放大，填滿整個元素 */
+    background-repeat: no-repeat;  /* 防止背景圖片重複顯示 */
+    height: 100vh;/* 使body元素佔據整個視窗高度,1vh等於視窗高度的1% */
+    font-size: 20px;
+}
+
+.container-post{
+    position:fixed;
+    top:55%;
+    left: 50%;
+    transform: translate(-50%, -50%);/* 將 <div> 元素向左和向上移動自身的 50%，實現水平和垂直居中 */
+    width: 1300px;
+    height: 800px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;/* 邊框圓弧度 */
+    border:5px solid rgb(255, 255, 255);
+}
+.container-post button{
+    border-radius: 10px;/* 邊框圓弧度 */
+}
+.GroupName{
+    padding-top: 60px;/* padding內邊距 */
+    padding-left: 550px;
+}
+.GroupName .activityTitle{
+    height: 60px;
+    width: 600px;
+    left: 50%;
+    transform: translate(-50%, -20px);
+}
+.GroupName input{
+    border-radius: 10px;/* 邊框圓弧度 */
+}
+.post-area{
+    height: 550px;
+    display: flex;
+    justify-content: center;/* 對齊置中 */
+    background-color: aliceblue;
+}
+.post-Image{
+    height: 550px;
+    width: 650px;
+    background-color: rgb(255, 255, 255);
+}
+.post-Image img{
+    height: 550px;
+    width: 650px;
+}
+.post-area .formfile{
+    position: relative;/* 父元素 */
+    background-color: rgb(255, 175, 94,0.9);
+    width: 50%;
+    height: 100%;
+}
+.formfile div{
+    margin-top: 12px;
+}
+.formfile .inputbox{
+    width: 85%;
+}
+.btnGroup{
+    display: flex;
+    justify-content: space-around;/* 平均分配寬度和間距 */
+    margin-top: 50px;/* margin外邊距 */
+}
+.btnGroup .btn2{
+    display: flex;
+    justify-content: space-around;
+}
+.btnGroup .btn2 > div{
+    margin-right: 150px;/* 按鈕間距 */
+}
+.btnGroup .btn2 button{
+    background-color: #ffbf71;
+    width: 130px;
+}
+.btnGroup .btn2 button:hover{
+    background-color: #faa21d;
+}
+.joinBtn{
+    display: flex;
+    justify-content: space-around;/* 平均分配寬度和間距 */
+    margin-top: 30px;/* margin外邊距 */
+}
+.joinBtn button{
+    width: 150px;
+    height: 50px;
+    background-color: #ffbf71;
+}
+.joinBtn button:hover{
+    background-color: #faa21d;
+}
+.mb-3{
+    position: absolute;/* 子元素 */
+    width: 100%;
+    bottom: -15px;
+}
+#custom-h2{
+    font-size: 1.6em;
+}

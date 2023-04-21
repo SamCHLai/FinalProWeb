@@ -1,9 +1,10 @@
 /* login */
   body{
-    background-image:url(../Images/img13.jpg);/* 將圖片設成背景 */
+    background-image:url(../Images/img10.jpg);/* 將圖片設成背景 */
     background-size: cover;  /* 背景圖片按比例放大，填滿整個元素 */
     background-repeat: no-repeat;  /* 防止背景圖片重複顯示 */
     height: 100vh;/* 使body元素佔據整個視窗高度,1vh等於視窗高度的1% */
+    font-family: 'Noto Sans HK', sans-serif;
   }
   .wrapper{
     position:relative;/* 父元素 */
@@ -45,16 +46,16 @@
     width: 400px;
     color: #fff;
   }
-  .form h1{
+  .form .logo h1{
     margin-bottom: 50px;
-    font-family:Franklin Gothic Medium;/* 字型 */
-    font-family: 'Noto Sans JP', sans-serif;/* 預設樣式中文字 */
+    text-align: center;
+    color: #fff;
   }
-  .form h2{
-    margin-top: -10px ;
-    margin-bottom: 40px;
-    font-family:Franklin Gothic Medium;/* 字型 */
-    font-family: 'Noto Sans JP', sans-serif;/* 預設樣式中文字 */
+  .form .logo a{
+    text-decoration: none;
+  }
+  .form .logo h1:hover{
+    color: #ffbf71;
   }
   .form input{
     width: 100%;
@@ -69,18 +70,19 @@
   .form .btn-group{
     margin-top: 30px;
   }
-  .form button{
+  .form .btn-group a{
+    text-decoration: none;
+    color: #fff;
+  }
+  .form .btn-group button{
     font-size: 20px;
     border-radius: 5px;/* 邊框圓弧度 */
     border: none;/* 去邊框 */
     background-color: #ffbf71;
-    width: 190px;
+    width: 400px;
     padding: 10px 0;
     color:#fff;
     
-  }
-  .form button + button{
-    margin-left: 15px;
   }
   .form button:hover{
     background-color: #FFDEAD;
@@ -88,7 +90,6 @@
   .form p{
     margin-top: 20px;
     font-size: 20px;
-    font-weight: bold;
   }
   .form p a{
     margin-left: 10px;
@@ -107,7 +108,6 @@
     transition: none;
     /* display: none;   */
     font-size: 20px;
-    font-weight: bold;
   }
   .wrapper .active .register{
     transition: transform .2s ease;/* transition過渡0.2秒緩衝 */

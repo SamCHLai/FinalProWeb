@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登入畫面</title>
+    <!-- 響應式網站 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Boostrap 導入程式 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <!-- 連結CSS外部檔案 -->
+    <link rel="stylesheet" href="./css/login.css">
+    <!-- 連接Js外部檔案 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./Js/index.js"></script>
+    <script >
+    $(function(){
+    	formIndex()
+    	//案登入鈕後，檢查登入的資料是否都有填，都有填的情況下，才送資料到後端檢查帳號密碼是否與資料庫中的資料一致
+    	//如果帳號密碼都正確，後端會送Header{"isLogin":"1"}及response  member資料表中，該會員的資料(除了password)
+    	//將isLogin及member 的資料塞到sessionStorage，並轉到index.html
+    	$("#login_btn").on("click",function(){		
+    		let blankinput=$(".login").find("input").filter(function(){ 		
+         		return $.trim($(this).val()) === ''
+        	})
+	       	if(blankinput.length == 0){
+				$.get("./Login",{account:$("#user-account").val(),password:$("#user-password").val()},function(data,status,jqXHR){
+	    			alert("按鈕有觸發Login")
+	    			console.log("按鈕有觸發getlogin")    			
+	    			alert(jqXHR.getResponseHeader("isLogin")) 
+	    			console.log(data);
+	    			console.log(typeof data);
+					console.log("isLogin:" + jqXHR.getResponseHeader("isLogin"))
+					if(jqXHR.getResponseHeader("isLogin")==="1"){
+						sessionStorage.setItem('isLogin',jqXHR.getResponseHeader("isLogin"));
+						let dataObj = JSON.stringify(data);
+		    			sessionStorage.setItem('member',dataObj);
+		    			console.log(sessionStorage.getItem('member'));
+		    			alert("debug");
+						window.location.href="./index.html"
+					}else{
+						alert("登入失敗");
+					}    			
+	    		})
+	       	}else{
+	       		alert("請輸入全部的值");
+	    		blankinput.first().focus();
+	       	}
+  		
+    	});    	   	
+    	
+    })
+    //接收從Index.html中，是由哪一個按鈕超連結過來的，決定要顯示登入畫面或者為註冊畫面
+    function formIndex(){
+//     	if(sessionStorage.getItem("formIndex") =="register"){
+//     			alert("前");
+//     		    $('.container-login').classList.add('active');
+//     		    alert("後");
+//     	}
+    	sessionStorage.removeItem("formIndex");
+
+    }
+    //檢查該帳號是否已經存在資料庫中，將memberAccount的資料送到後端檢查，如果後端檢查到有資料在資料庫中，會回傳一個JSON{"isDup":"true"}
+    //如果帳號重複的話，將memberAccount的資料清空
+    function checkAccount(){
+    	$.post("./CheckAccount",{account:$("#memberAccount").val()},function(data,status,jqXHR){
+    		if(data.isDup ==="true"){
+    			$("#memberAccount").val('')
+    			alert("該帳號已經被註冊啦");
+    		}
+   		})    	
+    }
+    //將註冊的資料送到後端，先檢查是否都有填值了，都有填值才將資料送到後端./Register,註冊後導回首頁
+    function register(){
+    	let blankinput=$(".register").find("input").filter(function(){ 		
+     		return $.trim($(this).val()) === ''
+    	})
+    	if(blankinput.length == 0){
+        	console.log("都有值")
+    		$.post("./Register",{memberName:$("#memberName").val(),account:$("#memberAccount").val(),password:$("#password").val()},function(){
+        		alert("註冊成功，請重新登入");
+        		console.log("註冊完畢1");
+        		window.location.href="./index.html"
+        	})
+    	}else{
+    		alert("請輸入全部的值");
+    		blankinput.first().focus();
+    	}
+
+    };
+    
+    function checkpw(){
+    	if($("#password").val() !== $("#checkpassword").val()){
+    		alert("密碼不一致，請重新輸入");
+    		$("#checkpassword").val('');
+    	}
+    }
+    
+    
+    </script>
+    
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- 登入畫面 -->
+        <div class="container-login">
+            <div class="login">
+<!--                sam 20230420修改 -->
+                <div class="form">
+                    <div class="logo">
+                        <a href="./index.html"><h1>Join 揪羽球</h1></a>
+                    </div>
+                    
+                    <div class="group">
+                        <label for="user-account">帳號 ( Email )</label>
+                        <input type="email" name="account" id="user-account" placeholder="請輸入Email">
+                    </div>
+                    <div class="group">
+                        <label for="user-password">密碼</label>
+                        <input type="password" name="password" id="user-password" >
+                    </div>
+                    <div class="btn-group">
+<!--                     sam 20230420修改 -->
+                        <button id="login_btn">登入</button>
+                    </div>
+                    <p>您還沒有帳號嗎 ?<a href="#" class="register-link">點擊註冊</a></p>
+                </div>
+            </div>
+            <!-- 註冊畫面 -->
+            <div class="register">
+                <div class="form">
+                    <div class="logo">
+                        <a href="./index.html"><h1>Join 揪羽球</h1></a>
+                    </div>
+                    <div class="group">
+                        <label for="memberName">會員姓名( 暱稱 )</label>
+                        <input required type="text" name="memberName" id="memberName" >
+                    </div>
+                    <div class="group">
+                        <label for="memberAccount">帳號 ( Email )</label>
+                        <input required type="email" name="account" id="memberAccount" onblur="checkAccount()" placeholder="請輸入Email">
+                    </div>
+                    <div class="group">
+                        <label for="password">密碼</label>
+                        <input required type="password" name="password" id="password" οnkeyup="this.value=this.value.replace(/[^\a-\z\A-\Z0-9]/g,'');">
+                    </div>
+                    <div class="group">
+                        <label for="password">重複密碼</label>
+                        <input required type="password" name="password" id="checkpassword" onblur="checkpw()">
+                    </div>
+                    <div class="btn-group">
+                        <button  id="register" onclick="register()">註冊</button>
+                    </div>
+                    <p>您已經擁有帳號嗎 ?<a href="#" class="login-link">返回登入</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 連接Js外部檔案 -->
+    <script src="./Js/login.js"></script>
+</body>
+
+</html>

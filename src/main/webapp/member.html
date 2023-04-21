@@ -9,129 +9,234 @@
     <!-- Boostrap 導入程式 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-        <!-- 中文字型樣式 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@500&family=Noto+Sans+JP:wght@700&family=Noto+Sans+TC:wght@900&display=swap"
-        rel="stylesheet">
-    <!-- 重要 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
     <!-- 連結CSS外部檔案 -->
-    <link rel="stylesheet" href="personalInformation.css">
+    <link rel="stylesheet" href="./css/sidebar.css">
+    <!-- 連結Js外部檔案 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./Js/index.js"></script>
+    <script>
     
+    $(function(){
+    	getData();
+    })
+    
+    function modify(){
+    	$(".member-area").find("input").removeAttr("readonly");
+    	$("#email").prop("readonly","true");
+    	$("#modify").prop("hidden","true");
+    	$("#save").removeAttr("hidden");
+    	$("#cancel").removeAttr("hidden");
+    }
+    
+	function save(){
+    	$("#memberName").val()
+    }
+	
+	function cancel(){
+		$(".member-area").find("input").not("#pwdDiv input").prop("readonly","true");
+		$("#modify").removeAttr("hidden");
+		$("#save").prop("hidden","true");
+		$("#cancel").prop("hidden","true");
+		getData();
+	}
+	
+	function getData(){
+		let memberObj = sessionStorage.getItem('member');
+		let member = JSON.parse(memberObj);
+		$("#memberName").val(member.memberName);
+		$("#email").val(member.account);
+		$("#phoneNumber").val(member.phoneNumber);
+		$("#birthday").val(member.birthday);
+		if(member.gender ==="1"){
+			$("#gender1").prop("checked","true");
+		}else{
+			$("#gender2").prop("checked","true");
+		}
+	}
+    
+	function showPwdRow(){
+		$("#pwdDiv :hidden").removeAttr("hidden");
+		$("#showPwdRow").prop("hidden","true");
+		$("#showPwdRow").nextAll("br").remove();		
+		$("#oldPwd").after("<br>");
+		$("#newPwd").after("<br>");
+		$("#checknewPwd").after("<br><br>");
+		$("#cancelChangeBtn").after("<br><br>");		
+	}
+	
+	function cancelChangeBtn(){
+		$("#oldPwd").val('');
+		$("#newPwd").val('');
+		$("#checknewPwd").val('');
+		$("#pwdDiv :visible").prop("hidden","true");
+		$("#pwdLab").removeAttr("hidden");
+		$("#showPwdRow").removeAttr("hidden");
+		$("#showPwdRow").after("<br><br>");
+		
+	}
+	
+	function checkpw(){
+		if($("#newPwd").val() !== $("#checknewPwd").val()){
+    		alert("密碼不一致，請重新輸入");
+    		$("#checknewPwd").val('');
+    	}		
+	}
+	
+	function changeBtn(){
+		let blankinput=$("#pwdDiv").find("input").filter(function(){ 		
+     		return $.trim($(this).val()) === ''
+    	})
+    	if(blankinput.length == 0){
+    		let memberObj = sessionStorage.getItem('member');
+    		let member = JSON.parse(memberObj);
+    		$.post("./ChangePwd",{id:member.id,oldPwd:$("#oldPwd").val(),newPwd:$("#newPwd").val()},function(data){
+    			if(data.PwdChangeStatus ==="success"){
+    				alert("密碼更新成功");
+    				cancelChangeBtn();
+    			}else{
+    				$("#oldPwd").val('');
+    				$("#newPwd").val('');
+    				$("#checknewPwd").val('');
+    				alert("密碼更新失敗");    				
+    			}
+    		})
+    	}else{
+    		alert("請輸入全部的值");
+    		blankinput.first().focus();
+    	}
+	}	
+
+	
+    </script>
 </head>
 
 <body>
-    
+    <div id="wrapper">
+        <div class="overlay"></div>
 
-    <!-- 個人資料 -->
-    <div class="container bootstrap snippet">
-            <div class="col-sm-3"><!--頭像-->
-
-                <div class="text-center">
-                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
-                        alt="avatar">
-                    <h6>更新頭像</h6>
-                    <input type="file" class="text-center center-block file-upload">
+        <!-- Sidebar導覽列 -->
+        <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <div class="sidebar-header">
+                    <img src="./Images/logo3.png" alt="">
+                    <div class="sidebar-brand">
+                        <a href="#">Join揪羽球</a>
+                    </div>
                 </div>
-                </hr><br>
-                
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#member">會員資料</a></li>
 
+                <li class="dropdown">
+                    <a href="#activity" class="dropdown-toggle" data-toggle="dropdown">活動<span class="caret"></span></a>
+                    <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                        <div class="dropdown-header">所有活動</div>
+                        <li><a href="#calendar">日曆</a></li>
+                        <li><a href="#team">我報名的活動</a></li>
+                        <li><a href="#post">我發起的活動</a></li>
+                    </ul>
+                </li>
+                <li><a href="#art">管理活動</a></li>
+                <li><a href="#services">管理會員資料</a></li>
+
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <!-- 漢堡按鈕 -->
+            <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+
+            <!-- 會員區塊 -->
+            <div class="container-PI">
+                <div class="PI">
+
+                    <!-- 頭像區塊 -->
+                    <div class="member-avatar-area">
+                        <!--頭像-->
+                        <div class="member-avatar">
+                            <div class="text-center">
+                                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                                id="Icon" class="avatar img-circle img-thumbnail" alt="avatar">
+                                <h6>更換頭像</h6>
+                                <input type="file" class="text-center center-block file-upload select">
+                            </div>
+                            </hr><br>
+                        </div>
+                    </div>
+                    <!-- 個人資料表 -->
+                    <div class="member-area">
+                        <div class="member member-PI">
+<!-- sam20230421修改 -->
+                            <div>
+
+                                <h3>會員資料</h3><br><br>
+                                <div class="project">
+                                    <label for="memberName">會員姓名</label>
+                                    <input type="text" id="memberName" name="memberName" readonly><br><br>
+                                </div>
+                                <div class="project">
+                                    <label for="memberAccount">帳號</label>
+                                    <input type="email" id="email" name="memberAccount" readonly><br><br>
+                                </div>
+                                <div class="project" id="pwdDiv">
+                                    <label id="pwdLab">會員密碼</label>
+                                    <button id="showPwdRow" onclick="showPwdRow()">修改密碼</button><br><br>
+                                    <input type="password" id="oldPwd" name="oldPwd" hidden placeholder="請輸入原密碼">
+                                    <label hidden>    </label>
+                                    <input type="password" id="newPwd" name="newPwd" hidden placeholder="請輸入新密碼">
+                                    <label hidden>    </label>
+                                    <input type="password" id="checknewPwd" name="checknewPwd" hidden placeholder="請確認新密碼" onblur="checkpw()">
+                                    <label hidden>    </label>
+                                    <button id="changeBtn" onclick="changeBtn()" hidden>確認修改</button>
+                                    <button id="cancelChangeBtn" onclick="cancelChangeBtn()" hidden>取消修改</button>
+                                </div>
+                                <div class="project">
+                                    <label for="phoneNumber">手機號碼</label>
+                                    <input type="text" id="phoneNumber" name="phoneNumber" readonly><br><br>
+                                </div>
+                                <div class="project">
+                                    <label for="birthday">生日</label>
+                                    <input type="date" id="birthday" name="birthday" readonly><br><br>
+                                </div>
+                                <div class="project">
+                                    <label >性別</label>
+                                    <input type="radio" id="gender1" name="gender" value="1" checked readonly >
+                                    <label for="gender1">男性</label>
+                                    <input type="radio" id="gender2" name="gender" value="2" readonly>
+                                    <label for="gender2">女性</label>
+                                </div>
+                                <div class="btn-group">
+                                    <button id="modify" onclick="modify()">修改資料</button>
+                                    <button id="save" hidden onclick="save()">儲存</button>
+                                    <button id="cancel" hidden onclick="cancel()">取消</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <!--個人資料表-->
-            <div class="col-sm-9">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">個人資料</a></li>
-                </ul>
+        </div>
 
-                <div class="tab-content">
-                    <div class="tab-pane active" id="home">
-                        <hr>
-                        <form class="form" action="##" method="post" id="registrationForm">
-                            <div class="form-group">
-                                <div class="col-xs-6">
-                                    <label for="first_name">
-                                        <h4>名稱(暱稱)</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="user_name" id="user_name"
-                                        placeholder="user name" title="enter your name if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="phone">
-                                        <h4>手機號碼</h4>
-                                    </label>
-                                    <input type="text" class="form-control" name="phone" id="phone"
-                                        placeholder="enter phone" title="enter your phone number if any.">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="email">
-                                        <h4>會員帳號</h4>
-                                    </label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="you@email.com" title="enter your email.">
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="password">
-                                        <h4>會員密碼</h4>
-                                    </label>
-                                    <input type="password" class="form-control" name="password" id="password"
-                                        placeholder="password" title="enter your password.">
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="gender">
-                                        <h4>性別 :</h4>
-                                    </label> 
-                                        <input type="radio" name="gender" value="gender">男
-                                        <input type="radio" name="gender" value="gender">女
-                                        
-                                </div>
-                            </div>
-                            <div class="form-group">
-
-                                <div class="col-xs-6">
-                                    <label for="birthday">
-                                        <h4>生日</h4>
-                                    </label>
-                                    <input type="date">
-                                    
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <br>
-                                    <button class="btn btn-lg btn-success" type="submit">
-                                        <i class="glyphicon glyphicon-ok-sign"></i> 儲存</button>
-                                    <button class="btn btn-lg btn-success" type="submit">取消</button>
-                                    <button class="btn btn-lg btn-success" type="submit">修改資料</button>
-                                </div>
-                            </div>
-                        </form>
-                        <hr>
-                    </div><!--/tab-pane-->
-                </div><!--/tab-pane-->
-            </div><!--/tab-content-->
-        </div><!--/col-9-->
-    </div><!--/row-->
+    </div>
+    
 </body>
 
 </html>

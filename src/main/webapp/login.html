@@ -12,108 +12,98 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-    <!-- 中文字型樣式 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@500&family=Noto+Sans+JP:wght@700&family=Noto+Sans+TC:wght@900&display=swap"
-        rel="stylesheet">
     <!-- 連結CSS外部檔案 -->
     <link rel="stylesheet" href="./css/login.css">
-    <link rel="stylesheet" href="./css/navbar&footer.css">
-    <!-- MDB頭像 -->
-    <script type="text/javascript" src="./Js/mdb.min.js"></script>
+    <!-- 連接Js外部檔案 -->
+    <script src="./Js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#login_btn").on("click",function(){
+                alert("getlogin before get");
+                
+                $.get("Login",{account:$("#user-account").val(),password:$("#user-password").val()},function(data,status,jqXHR){
+                    /*
+                    alert("按鈕有觸發Login")
+                    console.log("按鈕有觸發getlogin")
+                    alert(data);
+                    console.log(data);
+                    console.log(typeof data);
+                    alert(jqXHR.getResponseHeader("isLogin"))
+                    console.log("isLogin:" + jqXHR.getResponseHeader("isLogin"))
+                    console.log(sessionStorage.getItem('member'));
+                    alert("debug");
+                    */
+                    sessionStorage.setItem('isLogin',jqXHR.getResponseHeader("isLogin"));
+                    let dataObj = JSON.stringify(data);
+                    sessionStorage.setItem('member',dataObj);
     
+
+                    window.location.href="./index.html"
+                    
+                })
+            });
+        })
+        
+    
+        </script>
+
 </head>
 
 <body>
-   <!-- 導覽列 -->
-   <header class="main-header">
-    <div class="container">
-        <a href="" class="Logo">
-            <img src="./Images/logo.png" alt="Logo" width="30" height="36">
-            <h2>Join</h2>
-        </a>
-        <!-- 導覽列文字 -->
-        <nav class="navbar-text">
-            <a href="">最新消息</a>
-            <a href="">附近場館</a>
-            <a href="">發起揪團</a>
-            <a href="">我的活動</a>
-        </nav>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <ul class="navbar-nav">
-                    <!-- Avatar頭像 -->
-                    <li class="nav-item Avatar dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
-                            id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="./Images/user.png" class="rounded-circle" width="50" height="50"
-                                alt="Portrait of a Woman" loading="lazy" />
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#">登入</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">個人資訊</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-</header>
+
     <div class="wrapper">
         <!-- 登入畫面 -->
         <div class="container-login">
             <div class="login">
-                <form class="form" action="Login" method="post">
-                    <h1>Join 揪羽球</h1>
+                <form class="form">
+                    <div class="logo">
+                        <a href="./index.html"><h1>Join 揪羽球</h1></a>
+                    </div>
+                    
                     <div class="group">
-                        <label for="user-id">帳號</label>
-                        <input type="text" name="account" id="user-account">
+                        <label for="user-account">帳號 ( Email )</label>
+                        <input type="email" name="account" id="user-account" placeholder="請輸入Email">
                     </div>
                     <div class="group">
                         <label for="user-password">密碼</label>
-                        <input type="password" name="password" id="user-password">
+                        <input type="password" name="password" id="user-password" >
                     </div>
                     <div class="btn-group">
-                        <button>登入</button>
-                        <button>取消</button>
+                        <!-- Sam 20230418 新增id -->
+                        <button id="login_btn">登入</button>
                     </div>
                     <p>您還沒有帳號嗎 ?<a href="#" class="register-link">點擊註冊</a></p>
                 </form>
             </div>
             <!-- 註冊畫面 -->
-        <div class="register">
-            <form class="form">
-                <h2>Join 揪羽球</h2>
-                <div class="group">
-                    <label for="user-id">使用者名稱(暱稱)</label>
-                    <input required type="text" name="" id="user-id">
-                </div>
-                <div class="group">
-                    <label for="user-password">帳號</label>
-                    <input required type="text" name="" id="user-account">
-                </div>
-                <div class="group">
-                    <label for="user-password">密碼</label>
-                    <input required type="password" name="" id="user-password">
-                </div>
-                <div class="group">
-                    <label for="user-password">重複密碼</label>
-                    <input required type="password" name="" id="user-password">
-                </div>
-                <div class="btn-group">
-                    <button>註冊</button>
-                    <button>取消</button>
-                </div>
-                <p>您已經擁有帳號嗎 ?<a href="#" class="login-link">返回登入</a></p>
-            </form>
-        </div>
+            <div class="register">
+                <form class="form">
+                    <div class="logo">
+                        <a href="./index.html"><h1>Join 揪羽球</h1></a>
+                    </div>
+                    <div class="group">
+                        <label for="memberName">會員姓名( 暱稱 )</label>
+                        <input required type="text" name="memberName" id="memberName" >
+                    </div>
+                    <div class="group">
+                        <label for="memberAccount">帳號 ( Email )</label>
+                        <input required type="email" name="account" id="memberAccount" placeholder="請輸入Email">
+                    </div>
+                    <div class="group">
+                        <label for="password">密碼</label>
+                        <input required type="password" name="password" id="password" οnkeyup="this.value=this.value.replace(/[^\a-\z\A-\Z0-9]/g,'');">
+                    </div>
+                    <div class="group">
+                        <label for="password">重複密碼</label>
+                        <input required type="password" name="password" id="password">
+                    </div>
+                    <div class="btn-group">
+                        <button type="submit">註冊</button>
+                    </div>
+                    <p>您已經擁有帳號嗎 ?<a href="#" class="login-link">返回登入</a></p>
+                </form>
+            </div>
         </div>
     </div>
     <!-- 連接Js外部檔案 -->

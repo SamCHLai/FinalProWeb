@@ -1,305 +1,397 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> 
+<html lang="en"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>揪羽球Join</title> 
+    <!-- 響應式網站 --> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <!-- Boostrap 導入程式 --> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" 
+        crossorigin="anonymous"></script> 
+    <!-- 連結CSS外部檔案 --> 
+    <link rel="stylesheet" href="./css/navbar&footer.css"> 
+    <link rel="stylesheet" href="./css/index.css">
+        <!-- MDB頭像 --> 
+    <script type="text/javascript" src="./Js/mdb.min.js"></script> 
+    
+    <!-- 連接Js外部檔案 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./Js/index.js"></script>  
+<!--     sam 20230420修改 解決8080/favicon.ico:1     Failed to load resource: the server responded with a status of 404 ()-->
+    <link rel="shortcut icon" href="#" />  
 
-<head>
-    <meta charset="UTF-8">
-    <title>揪羽球Join</title>
-    <!-- 響應式網站 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Boostrap 導入程式 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-        crossorigin="anonymous"></script>
-    <!-- 中文字型樣式 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@500&family=Noto+Sans+JP:wght@700&family=Noto+Sans+TC:wght@900&display=swap"
-        rel="stylesheet">
-    <!-- 連結CSS外部檔案 -->
-    <link rel="stylesheet" href="./css/navbar&footer.css">
-    <link rel="stylesheet" href="./css/home.css">
-    <!-- MDB頭像 -->
-    <script type="text/javascript" src="./Js/mdb.min.js"></script>
-</head>
+     <script>
+    
+    $(function(){
+    	//判斷是否為登入狀況，如果是登入狀況，去sessionStroage拿會員的資料，並重新渲染登入等按鈕。
+    	if(checkloginstatus()==="1"){
+    		let memberObj = sessionStorage.getItem('member');
+    		let member = JSON.parse(memberObj);
+    		console.log(member.id);
+        	console.log(member.Icon);
+        	$("#Icon").attr("src",member.Icon);
+        	$("#dropdown-menu li").eq(0).find("a").html("會員資料");
+        	$("#dropdown-menu li").eq(0).find("a").attr("href","./member.html")
+        	$("#dropdown-menu li").eq(1).find("a").html("活動");
+        	$("#dropdown-menu li").eq(1).find("a").attr("href","#")
+        	$("#dropdown-menu li").eq(1).after("<li><a class='dropdown-item' href='./Logout' onclick='logout()'>登出</a></li>"); 
+       	}   		
+       		
+    	
+		
+    })
+   //去檢查是否為登入狀況，檢查sessionStorage是否有isLogin的值
+    function checkloginstatus(){
+    	console.log("sessionStorage.getItem(isLogin)前")
+    	let isLogin = sessionStorage.getItem("isLogin");
+    	if (isLogin === "1"){
+    		console.log("sessionStorage.getItem(isLogin)中1")
+    		 return "1"; 
+    		 
+    	}else{
+    		console.log("sessionStorage.getItem(isLogin)中2")
+    		return "0";
+    	}
+    	console.log("sessionStorage.getItem(isLogin)後")
+    }
+    
+    //將sessionStroage 中的isLogin及member移除，並重新渲染成原本的樣子
+    function logout(){
+    	alert("觸發logout");    	
+    	sessionStorage.removeItem("isLogin");
+    	sessionStorage.removeItem("member");    	
+   		$("#Icon").attr("src","./Images/user.png");
+   		$("#dropdown-menu li").eq(0).find("a").html("登入");
+   		$("#dropdown-menu li").eq(0).find("a").attr("href","./getLogin");
+   		$("#dropdown-menu li").eq(1).find("a").html("註冊");
+   		$("#dropdown-menu li").eq(1).find("a").attr("href","./getLogin");
+		$("#dropdown-menu li").eq(2).revome();  
+    }
+    //傳遞資料到login.html，告知是哪一個按鈕超連結到login.html
+    function toLogin(){
+    	$("#login").on("click",function(){
+    		sessionStorage.setItem("formIndex","login")
+    	})
+ 	    $("#register").on("click",function(){
+    		sessionStorage.setItem("formIndex","register")
+    	})
+    }
+    
+    </script>
+</head> 
+ 
+<body> 
+    <div class="wrapper">
+        <!-- 導覽列 --> 
+        <header class="main-header"> 
+            <div class="container"> 
+                <a href="./index.html" class="Logo"> 
+                    <img src="./Images/logo3.png" alt="Logo" width="30" height="36"> 
+                    <h2>Join</h2> 
+                </a> 
+                <!-- 導覽列文字 --> 
+                <nav class="navbar-text"> 
+                    <a href="./latestNews.html">最新消息</a> 
+                    <a href="./findGym.html">附近場館</a> 
+                    <a href="./post.html">發起揪團</a> 
+                    <a href="./joinTeam.html">加入報團</a> 
+                </nav> 
+                <nav class="navbar navbar-expand-lg"> 
+                    <div class="container-fluid"> 
+                        <ul class="navbar-nav"> 
+                            <!-- Avatar頭像 --> 
+                            <li class="nav-item Avatar dropdown"> 
+                                <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" 
+                                    id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" 
+                                    aria-expanded="false"> 
+                                    <img src="./Images/user.png" id="Icon" class="rounded-circle" width="50" height="50" 
+                                        alt="Portrait of a Woman" loading="lazy" /> 
+                                </a> 
+                                <!--sam 20230420 修改 -->
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="dropdown-menu"> 
 
-<body>
-    <!-- 導覽列 -->
-    <header class="main-header">
-        <div class="container">
-            <a href="" class="Logo">
-                <img src="./Images/logo.png" alt="Logo" width="30" height="36">
-                <h2>Join</h2>
-            </a>
-            <!-- 導覽列文字 -->
-            <nav class="navbar-text">
-                <a href="">最新消息</a>
-                <a href="">附近場館</a>
-                <a href="">發起揪團</a>
-                <a href="">我的活動</a>
-            </nav>
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <ul class="navbar-nav">
-                        <!-- Avatar頭像 -->
-                        <li class="nav-item Avatar dropdown">
-                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
-                                id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
-                                aria-expanded="false">
-                                <img src="./Images/user.png" class="rounded-circle" width="50" height="50"
-                                    alt="Portrait of a Woman" loading="lazy" />
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li>
-                                    <a class="dropdown-item" href="#">登入</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">個人資訊</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
-    <!-- 投影片架構                carousel旋轉木馬 slide滑動都是關鍵字 -->
-    <div id="slideshow" class="carousel slide" data-bs-ride="carousel">
-        <!-- 圖片投影 元件1-->
-        <div class="carousel-inner">
-            <!-- 第一張圖片 active-->
-            <div class="carousel-item active">
-                <img class="slide-pic" src="./Images/img11.jpg" alt="slide1">
-            </div>
-            <!-- 第二張圖片 -->
-            <div class="carousel-item">
-                <img class="slide-pic" src="./Images/img12.jpg" alt="slide2">
-            </div>
-            <!-- 第三張圖片 -->
-            <div class="carousel-item">
-                <img class="slide-pic" src="./Images/img9.jpg" alt="slide3">
-            </div>
-            <!-- 按鈕 -->
-            <!-- <button type="button" class="btn btn3 btn-outline-light">揪團去</button> -->
-            <button type="button" class="btn btn3 btn-outline-warning">揪團去</button>
-            <div class="words"> Let's</div>
-            <div class="words2"> Get </div>
-            <div class="words3"> Join </div>
-        </div>
+                                    <li> 
+                                        <a class="dropdown-item" onclick="toLogin()" href="./getLogin" id="login">登入</a> 
+                                    </li> 
+                                    <li> 
+                                        <a class="dropdown-item" onclick="toLogin()" href="./getLogin" id="register">註冊</a> 
+                                    </li> 
+                                </ul> 
+                            </li> 
+                        </ul> 
+                    </div> 
+                </nav> 
+            </div> 
+        </header> 
+        <!-- 投影片架構                carousel旋轉木馬 slide滑動都是關鍵字 --> 
+        <div id="slideshow" class="carousel slide" data-bs-ride="carousel"> 
+            <!-- 圖片投影 元件1--> 
+            <div class="carousel-inner"> 
+                <!-- 第一張圖片 active--> 
+                <div class="carousel-item active"> 
+                    <img class="slide-pic" src="./Images/img11.jpg" alt="slide1"> 
+                </div> 
+                <!-- 第二張圖片 --> 
+                <div class="carousel-item"> 
+                    <img class="slide-pic" src="./Images/img25.jpg" alt="slide2"> 
+                </div> 
+                <!-- 第三張圖片 --> 
+                <div class="carousel-item"> 
+                    <img class="slide-pic" src="./Images/img9.jpg" alt="slide3"> 
+                </div> 
+                <div class="words"> Let's</div> 
+                <div class="words2"> Get </div> 
+                <div class="words3"> Join </div> 
+            </div> 
+     
+            <!-- 左右按鈕 元件2--> 
+            <!-- data-bs-target連結 id是#slideshow --> 
+            <!-- 輪播圖左邊按鈕 --> 
+            <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev"> 
+                <span class="carousel-control-prev-icon"></span> 
+            </button> 
+            <!-- 輪播圖右邊按鈕 --> 
+            <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next"> 
+                <span class="carousel-control-next-icon"></span> 
+            </button> 
+     
+            <!--指示按鈕 元件3 --> 
+            <div class="carousel-indicators"> 
+                <button type="radio" data-bs-target="#slideshow" data-bs-slide-to="0" class="active"></button> 
+                <button type="radio" data-bs-target="#slideshow" data-bs-slide-to="1"></button> 
+                <button type="radio" data-bs-target="#slideshow" data-bs-slide-to="2"></button> 
+            </div> 
+        </div> 
+        <div class="container2"> 
+            <h1>最新揪團</h1> 
+            <button type="button" class="btn1"><a href="./joinTeam.html">揪團去</a></button>  
+            
+        </div> 
+     
+        <!-- card --> 
+        <div class="card-group"> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+        </div> 
+        <div class="card-group"> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+        </div> 
+        <div class="card-group"> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+            <div class="card" style="width: 20rem;"> 
+                <img src="./Images/badminton.jpg" class="card-img-top" alt="..."> 
+                <div class="card-body"> 
+                    <h5 class="card-title">團名</h5> 
+                </div> 
+                <ul class="list-group list-group-flush"> 
+                    <li class="list-group-item">日期:3/22</li> 
+                    <li class="list-group-item">台北市</li> 
+                    <li class="list-group-item">初級、中級</li> 
+                </ul> 
+                <div class="card-body"> 
+                    <a href="#" class="card-link">頭像</a> 
+                </div> 
+            </div> 
+        </div> 
+     
+        <!-- footer頁尾 --> 
+        <footer> 
+            <div class="footer-container"> 
+                <div class="footer-section"> 
+                    <h4>更多</h4> 
+                    <ul> 
+                        <li><a href="#">顧客服務</a></li> 
+                        <li><a href="#">人才招募</a></li> 
+                        <li><a href="#">網頁資訊</a></li> 
+                    </ul> 
+                </div> 
+                <div class="footer-section"> 
+                    <h4>幫助</h4> 
+                    <ul> 
+                        <li><a href="#">社群守則</a></li> 
+                        <li><a href="#">常見問題</a></li> 
+                        <li><a href="#">使用者指南</a></li> 
+                    </ul> 
+                </div> 
+                <div class="footer-section"> 
+                    <h4>聯絡我們</h4> 
+                    <ul> 
+                        <li><a href="#">加入我們</a></li> 
+                        <li><a href="#">會員服務</a></li> 
+                        <li><a href="#">企業報團</a></li> 
+                    </ul> 
+                </div> 
+                <div class="footer-section"> 
+                    <h4>關於我們</h4> 
+                    <ul> 
+                        <li><a href="#">我們的故事</a></li> 
+                        <li><a href="#">客服信箱</a></li> 
+                        <li><a href="#">社群媒體</a></li> 
+                    </ul> 
+                </div> 
+            </div> 
+            <!-- Copyright --> 
+            <div class="Copyright"> 
+                © 2021 Copyright: Sport Together 
+            </div> 
+     
+        </footer> 
 
-        <!-- 左右按鈕 元件2-->
-        <!-- data-bs-target連結 id是#slideshow -->
-        <!-- 輪播圖左邊按鈕 -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <!-- 輪播圖右邊按鈕 -->
-        <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-
-        <!--指示按鈕 元件3 -->
-        <div class="carousel-indicators">
-            <button type="radio" data-bs-target="#slideshow" data-bs-slide-to="0" class="active"></button>
-            <button type="radio" data-bs-target="#slideshow" data-bs-slide-to="1"></button>
-            <button type="radio" data-bs-target="#slideshow" data-bs-slide-to="2"></button>
-        </div>
     </div>
-    <div class="container2">
-        <h1>最新揪團</h1>
-        <button type="button" class="btn btn1  btn-warning">看更多</button>
-    </div>
-
-    <!-- card -->
-    <div class="card-group">
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-    </div>
-    <div class="card-group">
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-        <div class="card" style="width: 20rem;">
-            <img src="./Images/badminton.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">團名</h5>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">日期:3/22</li>
-                <li class="list-group-item">台北市</li>
-                <li class="list-group-item">初級、中級</li>
-            </ul>
-            <div class="card-body">
-                <a href="#" class="card-link">頭像</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- footer頁尾 -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>更多</h4>
-                <ul>
-                    <li><a href="#">顧客服務</a></li>
-                    <li><a href="#">人才招募</a></li>
-                    <li><a href="#">網頁資訊</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>幫助</h4>
-                <ul>
-                    <li><a href="#">社群守則</a></li>
-                    <li><a href="#">常見問題</a></li>
-                    <li><a href="#">使用者指南</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>聯絡我們</h4>
-                <ul>
-                    <li><a href="#">加入我們</a></li>
-                    <li><a href="#">會員服務</a></li>
-                    <li><a href="#">企業報團</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>關於我們</h4>
-                <ul>
-                    <li><a href="#">我們的故事</a></li>
-                    <li><a href="#">客服信箱</a></li>
-                    <li><a href="#">社群媒體</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- Copyright -->
-        <div class="Copyright">
-            © 2021 Copyright: Sport Together
-        </div>
-
-    </footer>
-</body>
-
+</body> 
+ 
 </html>

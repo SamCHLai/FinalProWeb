@@ -1,0 +1,452 @@
+/*-------------------------------*/
+/*           sidebar             */
+/*-------------------------------*/
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow-x: hidden;
+  background-image:url(../Images/img10.jpg);/* 將圖片設成背景 */
+  background-size: cover;  /* 背景圖片按比例放大，填滿整個元素 */
+  background-repeat: no-repeat;  /* 防止背景圖片重複顯示 */
+  height: 100vh;/* 使body元素佔據整個視窗高度,1vh等於視窗高度的1% */
+  width: 1200px;
+}
+
+/*-------------------------------*/
+/*           Wrappers            */
+/*-------------------------------*/
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+/* 按鈕位置 */
+#wrapper.toggled {
+  padding-left: 300px;
+}
+
+/* sidebar從這裡改 */
+#sidebar-wrapper {
+  z-index: 1000;
+  left: 220px;
+  width: 0;
+  height: 100%;
+  margin-left: -220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #1a1a1a;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#sidebar-wrapper::-webkit-scrollbar {
+display: none;
+}
+/* sidebar寬 */
+#wrapper.toggled #sidebar-wrapper {
+  width: 300px;
+}
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -300px;
+}
+
+/*-------------------------------*/
+/*     Sidebar nav styles        */
+/*-------------------------------*/
+.navbar {
+padding: 0;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  position: relative; 
+  line-height: 20px;
+  display: inline-block;
+  width: 100%;
+}
+
+.sidebar-nav li:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  height: 100%;
+  width: 3px;
+  background-color: #1c1c1c;
+  -webkit-transition: width .2s ease-in;
+    -moz-transition:  width .2s ease-in;
+     -ms-transition:  width .2s ease-in;
+          transition: width .2s ease-in;
+
+}
+.sidebar-nav li:hover{
+background: rgb(255, 175, 94) !important;
+border-radius: 10px;
+margin-left: 10px;
+margin-right: 10px;
+}
+.sidebar-nav li:hover:before,
+.sidebar-nav li.open:hover:before {
+  width: 100%;
+  -webkit-transition: width .2s ease-in;
+    -moz-transition:  width .2s ease-in;
+     -ms-transition:  width .2s ease-in;
+          transition: width .2s ease-in;
+
+}
+
+.sidebar-nav li a {
+  display: block;
+  color: #ddd;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Noto Sans HK', sans-serif;/* 預設樣式中文字 */
+  padding: 15px 15px 15px 30px;    
+}
+
+.sidebar-nav li a:hover,
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus,
+.sidebar-nav li.open a:hover,
+.sidebar-nav li.open a:active,
+.sidebar-nav li.open a:focus{
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+}
+.sidebar-header {
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Noto Sans HK', sans-serif;/* 預設文字樣式 */
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+.sidebar-header img{
+  width: 100px;
+  height: 100px;
+}
+/* Join揪羽球框 */
+.sidebar-brand {
+  height: 65px;
+  position: relative;
+  background:#212531;
+  background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+  padding-top: 0.75em;
+  font-family: 'Noto Sans HK', sans-serif;
+}
+.sidebar-brand a {
+  color: #ddd;
+}
+.sidebar-brand a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.dropdown-header {
+  text-align: center;
+  font-size: 1em;
+  color: #ddd;
+  background:#212531;
+  background: linear-gradient(to right bottom, #2f3441 50%, #212531 50%);
+}
+.sidebar-nav .dropdown-menu {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  border: none;
+  background-color: #898989;
+  box-shadow: none;
+}
+.dropdown-menu.show {
+  top: 0;
+}
+/*圖標&文字*/
+.nav.sidebar-nav li a::before {
+  font-family: fontawesome;/* 勿動 */
+  content: "\f12e";
+  vertical-align: baseline;
+  display: inline-block;
+  padding-right: 20px;
+  
+}
+a[href*="#home"]::before {
+content: "\f015" !important;
+}
+a[href*="#member"]::before {
+content: "\f007" !important;
+}
+a[href*="#calendar"]::before {
+content: "\f073" !important;
+}
+a[href*="#team"]::before {
+content: "\f0c0" !important;
+}
+a[href*="#activity"]::before {
+content: "\f0b1" !important;
+}
+a[href*="#art"]::before {
+content: "\f1fc" !important;
+}
+a[href*="#services"]::before {
+content: "\f013" !important;
+}
+a[href*="#post"]::before {
+content: "\f086" !important;
+}
+
+/*-------------------------------*/
+/*       Hamburger-Cross         */
+/*-------------------------------*/
+
+.hamburger {
+position: fixed;
+top: 20px;  
+z-index: 999;
+display: block;
+width: 32px;
+height: 32px;
+margin-left: 15px;
+background: transparent;
+border: none;
+}
+.hamburger:hover,
+.hamburger:focus,
+.hamburger:active {
+outline: none;
+}
+.hamburger.is-closed:before {
+content: '';
+display: block;
+width: 100px;
+font-size: 14px;
+color: #fff;
+line-height: 32px;
+text-align: center;
+opacity: 0;
+-webkit-transform: translate3d(0,0,0);
+-webkit-transition: all .35s ease-in-out;
+}
+.hamburger.is-closed:hover:before {
+opacity: 1;
+display: block;
+-webkit-transform: translate3d(-100px,0,0);
+-webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-closed .hamb-top,
+.hamburger.is-closed .hamb-middle,
+.hamburger.is-closed .hamb-bottom,
+.hamburger.is-open .hamb-top,
+.hamburger.is-open .hamb-middle,
+.hamburger.is-open .hamb-bottom {
+position: absolute;
+left: 0;
+height: 4px;
+width: 100%;
+}
+.hamburger.is-closed .hamb-top,
+.hamburger.is-closed .hamb-middle,
+.hamburger.is-closed .hamb-bottom {
+background-color: #1a1a1a;
+}
+.hamburger.is-closed .hamb-top { 
+top: 5px; 
+-webkit-transition: all .35s ease-in-out;
+}
+.hamburger.is-closed .hamb-middle {
+top: 50%;
+margin-top: -2px;
+}
+.hamburger.is-closed .hamb-bottom {
+bottom: 5px;  
+-webkit-transition: all .35s ease-in-out;
+}
+
+.hamburger.is-closed:hover .hamb-top {
+top: 0;
+-webkit-transition: all .35s ease-in-out;
+}
+.hamburger.is-closed:hover .hamb-bottom {
+bottom: 0;
+-webkit-transition: all .35s ease-in-out;
+}
+.hamburger.is-open .hamb-top,
+.hamburger.is-open .hamb-middle,
+.hamburger.is-open .hamb-bottom {
+background-color: #1a1a1a;
+}
+.hamburger.is-open .hamb-top,
+.hamburger.is-open .hamb-bottom {
+top: 50%;
+margin-top: -2px;  
+}
+.hamburger.is-open .hamb-top { 
+-webkit-transform: rotate(45deg);
+-webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
+}
+.hamburger.is-open .hamb-middle { display: none; }
+.hamburger.is-open .hamb-bottom {
+-webkit-transform: rotate(-45deg);
+-webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);
+}
+.hamburger.is-open:before {
+content: '';
+display: block;
+width: 100px;
+font-size: 14px;
+color: #fff;
+line-height: 32px;
+text-align: center;
+opacity: 0;
+-webkit-transform: translate3d(0,0,0);
+-webkit-transition: all .35s ease-in-out;
+}
+.hamburger.is-open:hover:before {
+opacity: 1;
+display: block;
+-webkit-transform: translate3d(-100px,0,0);
+-webkit-transition: all .35s ease-in-out;
+}
+
+/* --------------------------sidebar到這裡------------------------------------------ */
+
+/* 預留區塊 */
+.container-PI{
+  position: relative;/* 父元素 */
+  justify-content: center;/* 水平置中 */
+  align-items: center;/* 垂直置中 */
+  display: flex;
+  height: 100vh; /* 也可以使用固定高度 */
+}
+
+.PI{
+  background-color:rgba(255, 255, 255, 0.9);
+  position: absolute;/* 子元素 */
+  width: 1600px;
+  height: 800px;
+  left: 100px;
+  justify-content: center;/* 水平置中 */
+  align-items: center;/* 垂直置中 */
+  border:1px solid ;
+  border-radius: 15px;/* 邊框圓弧度 */
+  box-shadow: 0 0 10px #000000;/* shadow陰影 */
+  backdrop-filter: blur(1px);/* 毛玻璃效果 */
+}
+.member-avatar-area{
+  position: absolute;
+  height: 100%;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid ;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+}
+.member-avatar{
+  position: absolute;
+  top: 100px;
+}
+.member-avatar .text-center .avatar{
+  /* 將圖片框變為圓形 */
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+}
+.select{/* 更換頭像按鈕 */
+  position: absolute;
+  left: 10px;
+  top: 300px;
+}
+.member-area{
+  position: absolute;
+  height: 100%;
+  width: 1198px;
+  left: 400px;
+  background-color: rgba(254, 152, 50, 0.8);
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+}
+.member{
+  position: absolute;
+  height: 650px;
+  width: 1100px;
+  margin: 50px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 15px;/* 邊框圓弧度 */
+  border:1px solid ;
+  font-family: 'Noto Sans HK', sans-serif;
+  font-size: 20px;
+}
+.member-PI{
+  /* 會員資料單獨用 */
+  top: 50px;
+}
+.member .project label{
+  width: 120px;
+}
+.member .project input{
+  
+  border-radius: 5px;
+}
+
+.btn-group{
+  width: 100%;
+  padding-top: 30px;
+  justify-content: center;/* 水平置中 */
+}
+.btn-group button{
+  margin-right: 100px;
+  border-radius: 10px;
+  width: 150px;
+  background-color: #ffbf71;
+}
+.btn-group button:hover{
+  background-color: #faa21d;
+}
+.container-calendar{
+  position: relative;/* 父元素 */
+  justify-content: center;/* 水平置中 */
+  align-items: center;/* 垂直置中 */
+  display: flex;
+  height: 100vh; /* 也可以使用固定高度 */
+  width: 1200px;
+  height: 900px;
+  left: 400px;
+  top: 50px;
+  background-color: #1a1a1a;
+}
+.container-calendar .calendar {
+  background-color:rgb(254, 254, 254);
+  position: absolute;/* 子元素 */
+  width: 100%;
+  height: 100%;
+  justify-content: center;/* 水平置中 */
+  align-items: center;/* 垂直置中 */
+  border:1px solid ;
+  
+}

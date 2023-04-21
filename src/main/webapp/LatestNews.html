@@ -12,33 +12,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-    <!-- 中文字型樣式 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@500&family=Noto+Sans+JP:wght@700&family=Noto+Sans+TC:wght@900&display=swap"
-        rel="stylesheet">
     <!-- 連結CSS外部檔案 -->
-    <link rel="stylesheet" href="LatestNews.css">
+    <link rel="stylesheet" href="./css/LatestNews.css">
+    <link rel="stylesheet" href="./css/navbar&footer.css">
+    <!-- 連接Js外部檔案 -->
+    <script src="./Js/index.js"></script>
     <!-- MDB頭像 -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
 </head>
 
 <body>
-    <!-- 導覽列 -->
-    <header class="main-header">
-        <div class="container">
-            <a href="" class="Logo">
-                <img src="./Images/logo.png" alt="Logo" width="30" height="36">
-                <h2>Join</h2>
-            </a>
-            <!-- 導覽列文字 -->
-            <nav class="navbar-text">
-                <a href="">最新消息</a>
-                <a href="">附近場館</a>
-                <a href="">發起揪團</a>
-                <a href="">我的活動</a>
-            </nav>
+        <!-- 導覽列 -->
+        <header class="main-header">
+            <div class="container">
+                <a href="./index.html" class="Logo">
+                    <img src="./Images/logo3.png" alt="Logo" width="30" height="36">
+                    <h2>Join</h2>
+                </a>
+                <!-- 導覽列文字 -->
+                <nav class="navbar-text">
+                    <a href="./latestNews.html">最新消息</a>
+                    <a href="./findGym.html">附近場館</a>
+                    <a href="./post.html">發起揪團</a>
+                    <a href="./joinTeam.html">加入報團</a>                
+                </nav>
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <ul class="navbar-nav">
@@ -51,12 +48,12 @@
                                     alt="Portrait of a Woman" loading="lazy" />
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li>
-                                    <a class="dropdown-item" href="#">登入</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">個人資訊</a>
-                                </li>
+                                <li> 
+                                    <a class="dropdown-item" href="./login.html">登入</a> 
+                                </li> 
+                                <li> 
+                                    <a class="dropdown-item" href="./login.html">註冊</a> 
+                                </li> 
                             </ul>
                         </li>
                     </ul>
@@ -64,84 +61,9 @@
             </nav>
         </div>
     </header>
-    <div class="latestNews-container">
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-    </div>
-    <div class="latestNews-container">
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-    </div>
-    <div class="latestNews-container">
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-        <div class="latestNews-group">
-            <img src="./Images/img.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis illum veritatis quas, et laboriosam
-                necessitatibus iste sit debitis dolor assumenda delectus recusandae maxime ratione officiis possimus
-                doloribus dolorum! Tenetur, fuga.</p>
-        </div>
-    </div>
+   <div class="wrapper">
+
+   </div>
     <!-- footer頁尾 -->
     <footer>
         <div class="footer-container">

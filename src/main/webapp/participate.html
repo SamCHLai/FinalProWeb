@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>我報名的活動</title>
+  <!-- 響應式網站 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Boostrap 導入程式 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js"></script>
+  <!-- 連結CSS外部檔案 -->
+  <link rel="stylesheet" href="./css/sidebar.css">
+  <!-- 連結Js外部檔案 -->
+  <script src="./Js/index.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    <div class="overlay"></div>
+
+    <!-- Sidebar導覽列 -->
+    <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+      <ul class="nav sidebar-nav">
+        <div class="sidebar-header">
+          <img src="./Images/logo3.png" alt="">
+          <div class="sidebar-brand">
+            <a href="#">Join揪羽球</a>
+          </div>
+        </div>
+        <li><a href="#home">首頁</a></li>
+        <li><a href="#about">會員資料</a></li>
+
+
+        <li class="dropdown">
+          <a href="#works" class="dropdown-toggle" data-toggle="dropdown">活動<span class="caret"></span></a>
+          <ul class="dropdown-menu animated fadeInLeft" role="menu">
+            <div class="dropdown-header">所有活動</div>
+            <li><a href="#events">日曆</a></li>
+            <li><a href="#team">我報名的活動</a></li>
+            <li><a href="#contact">我發起的活動</a></li>
+          </ul>
+        </li>
+        <li><a href="#art">管理活動</a></li>
+        <li><a href="#services">管理會員資料</a></li>
+
+      </ul>
+    </nav>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <!-- 漢堡按鈕 -->
+      <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
+        <span class="hamb-top"></span>
+        <span class="hamb-middle"></span>
+        <span class="hamb-bottom"></span>
+      </button>
+
+      <!-- 區塊 -->
+      <div class="container-PI">
+        <div class="PI">
+
+
+
+        </div>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+</body>
+
+</html>

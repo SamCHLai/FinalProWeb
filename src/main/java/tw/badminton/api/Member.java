@@ -3,10 +3,30 @@ package tw.badminton.api;
 public class Member {
 	private String ID;
 	private String account;
+	private String password;
 	private String memberName;
 	private String phoneNumber;
 	private String gender;
 	private String birthday;
+	private String Icon;
+	
+	
+	public String getIcon() {
+		return Icon;
+	}
+
+	public void setIcon(String icon) {
+		Icon = icon;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	
 	public Member() {
 		

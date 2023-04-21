@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>發起揪團</title>
+    <!-- 響應式網站 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Boostrap 導入程式 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <!-- 連結CSS外部檔案 -->
+    <link rel="stylesheet" href="./css/post.css">
+    <link rel="stylesheet" href="./css/navbar&footer.css">
+    <!-- 連結Js外部檔案 -->
+    <script src="./Js/index.js"></script>
+    <!-- MDB頭像 -->
+    <script type="text/javascript" src="./Js/mdb.min.js"></script>
+</head>
+
+<body>
+    <!-- 導覽列 -->
+    <header class="main-header">
+        <div class="container">
+            <a href="./index.html" class="Logo">
+                <img src="./Images/logo3.png" alt="Logo" width="30" height="36">
+                <h2 id="custom-h2">Join</h2>
+            </a>
+            <!-- 導覽列文字 -->
+            <nav class="navbar-text">
+                <a href="./latestNews.html">最新消息</a>
+                <a href="./findGym.html">附近場館</a>
+                <a href="./post.html">發起揪團</a>
+                <a href="./joinTeam.html">加入報團</a>
+            </nav>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <ul class="navbar-nav">
+                        <!-- Avatar頭像 -->
+                        <li class="nav-item Avatar dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#"
+                                id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                                aria-expanded="false">
+                                <img src="./Images/user.png" class="rounded-circle" width="50" height="50"
+                                    alt="Portrait of a Woman" loading="lazy" />
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li> 
+                                    <a class="dropdown-item" href="./login.html">登入</a> 
+                                </li> 
+                                <li> 
+                                    <a class="dropdown-item" href="./login.html">註冊</a> 
+                                </li> 
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- 揪團框 -->
+    <div class="container-post">
+        <!-- 團名 -->
+        <div class="GroupName">
+            <input type="text" placeholder="  團名 : 活動名稱  " class="activityTitle" id="activityTitle" name="">
+        </div>
+        <!-- 圖 & 文字說明 -->
+        <div class="post-area">
+            <!--Image-->
+            <div class="post-Image">
+                <form action="/somewhere/to/upload" enctype="multipart/form-data">
+                    <img id="preview_progressbarTW_img" src="./Images/image.png"/>
+                </form>
+            </div>
+            <!-- 文字表單 -->
+            <div class="formfile">
+                <form action="">
+                    <div class="location">
+                        <label for="">地點 :</label>
+                        <select id="city" name="city">
+                            <option>選擇您想參與的縣市</option>
+                            <option value="">基隆</option>
+                            <option value="">宜蘭</option>
+                            <option value="">台北</option>
+                            <option value="">新北</option>
+                            <option value="">桃園</option>
+                            <option value="">新竹</option>
+                            <option value="">苗栗</option>
+                            <option value="">台中</option>
+                            <option value="">彰化</option>
+                            <option value="">南投</option>
+                            <option value="">雲林</option>
+                            <option value="">嘉義</option>
+                            <option value="">臺南</option>
+                            <option value="">高雄</option>
+                            <option value="">屏東</option>
+                            <option value="">花蓮</option>
+                            <option value="">臺東</option>
+                            <option value="">澎湖</option>
+                            <option value="">金門</option>
+                            <option value="">連江</option>
+                        </select>
+                        <select id="dist" name="dist">
+                            <option>中區</option>
+                        </select>
+                        <input type="text" id="location" name="location" placeholder="大源路100號">
+                    </div>
+                    <div>
+                        <label for="activityTime">活動時間 :</label>
+                        <input type="datetime-local" name="activityTime" id="activityTime">
+
+                    </div>
+                    <div>
+                        <label for="deadline">最晚審核時間 :</label>
+                        <input type="datetime-local" class="deadline" name="deadline" id="deadline">
+                    </div>
+                    <div style="display: flex;">
+                        <label for="min">最低人數 :</label>
+                        <input class="form-control inputbox" id="min" name="min" type="text" placeholder="最低人數"
+                            aria-label="default input example">
+                    </div>
+                    <div style="display: flex;">
+                        <label for="max">人數上限 :</label>
+                        <input class="form-control inputbox" id="max" name="max" type="text" placeholder="人數上限"
+                            aria-label="default input example">
+                    </div>
+                    <div style="display: flex;">
+                        <label for="contact">聯絡方式 :</label>
+                        <input class="form-control inputbox" id="contact" name="contact" type="text" placeholder="聯絡方式"
+                            aria-label="default input example">
+                    </div>
+                    <div>
+                        <label>場地預約 :</label>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineRadio1">已預約</label>
+                            <input class="form-check-input" id="inlineRadio1" name="inlineRadioOptions" type="radio">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineRadio2">未預約</label>
+                            <input class="form-check-input" id="inlineRadio2" name="inlineRadioOptions" type="radio">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>等級推薦 :</label>
+
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineCheckbox1">初級</label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineCheckbox2">中級</label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineCheckbox3">高級</label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <label class="form-check-label" for="inlineCheckbox4">專業</label>
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">活動說明 :</label>
+                        <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="btnGroup">
+            <div class="btn2">
+            <input type="file" onchange="readURL(this)" targetID="preview_progressbarTW_img" accept="image/gif, image/jpeg, image/png" >
+                <div><button type="submit">確認發文</button></div>
+                <div><a href="./index.html"><button>取消發文</button></a></div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
