@@ -17,12 +17,14 @@ import org.json.JSONObject;
 
 import tw.badminton.api.BCrypt;
 
-
+//修改密碼用的servlet
 @WebServlet("/ChangePwd")
 public class ChangePwd extends HttpServlet {
 	private Connection conn;
 	private JSONObject json;
 	
+	
+	//初始化時先做好connection
     public ChangePwd() {
     	try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -37,7 +39,7 @@ public class ChangePwd extends HttpServlet {
 
 	
 
-
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("ChangePwd doPost");
 		String sql = "SELECT password FROM member WHERE id=?";

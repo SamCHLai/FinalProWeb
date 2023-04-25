@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 import tw.badminton.api.BCrypt;
 
-
+//處理會員註冊
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private Connection conn;

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
- 
+ //登出，移除session中的member 物件，並回到首頁
 @WebServlet("/Logout")
 public class Logout extends HttpServlet {
 	

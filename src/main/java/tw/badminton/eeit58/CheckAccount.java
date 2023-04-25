@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-
+//確認帳號是否已經被註冊
 @WebServlet("/CheckAccount")
 public class CheckAccount extends HttpServlet {
 

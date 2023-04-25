@@ -26,9 +26,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./Js/index.js"></script>
     <script>
-    
+    var memberObj = sessionStorage.getItem('member');
+	var member = JSON.parse(memberObj);
     $(function(){
-    	getData();
+
+		getData();
+    	
     })
     
     function modify(){
@@ -40,7 +43,26 @@
     }
     
 	function save(){
-    	$("#memberName").val()
+		$.post("./UpdateMember",{
+    		id:member.id,
+    		memberName:$("#memberName").val(),
+    		phoneNumber:$("#phoneNumber").val(),
+    		gender:$("input[name='gender']:checked").val()},
+  			function(data,status){
+    		console.log(data);
+    		console.log(typeof data);
+  			alert("已經收到資料")
+    		if(data[0] ==="success"){
+  				let dataObj = JSON.stringify(data[1])
+  				alert("更新成功");
+  				sessionStorage.removeItem('member');
+  				sessionStorage.setItem('member',dataObj);
+  				alert("sessionStorage.setItem('member',dataObj)結束");
+  				location.reload();
+  				
+  			 }
+	
+    	})
     }
 	
 	function cancel(){
@@ -52,8 +74,6 @@
 	}
 	
 	function getData(){
-		let memberObj = sessionStorage.getItem('member');
-		let member = JSON.parse(memberObj);
 		$("#memberName").val(member.memberName);
 		$("#email").val(member.account);
 		$("#phoneNumber").val(member.phoneNumber);
@@ -63,6 +83,12 @@
 		}else{
 			$("#gender2").prop("checked","true");
 		}
+		console.log("getDataif前")
+		if(member.Icon){
+			console.log(member.Icon)
+			$("#Icon").attr("src",member.Icon);
+		}
+		
 	}
     
 	function showPwdRow(){
@@ -116,7 +142,70 @@
     		blankinput.first().focus();
     	}
 	}	
-
+	
+	function showNewIcon(event){
+		console.log(event);
+		
+// 		event.preventDefault();
+// 		alert("event.preventDefault()後")
+// 		event.stopPropagation();
+// 		alert("event.stopPropagation()後")
+		let file=$("#file")[0].files[0];
+		if(file.type.startsWith('image/jepg')||file.type.startsWith('image/jpg')||file.type.startsWith('image/jpe')){
+			if(file && file.size < 1024*2*1024){
+				let reader = new FileReader;
+				alert("至換前")
+				reader.onload = function(e) {
+				    $('#Icon').attr('src', e.target.result);
+				  };
+				  reader.readAsDataURL(file);
+				  alert("至換後")
+			}else{
+				alert("檔案限制2MB以下，請重新選擇");
+				$("#file").val('');
+//	 			$("#Icon").attr("src",member.Icon);
+// 				alert("置換完畢");
+//	 			event.preventDefault();
+			}
+		}else{
+			alert("只支援jepg、jpg、jpe等檔案類型");
+			$("#file").val('');
+		}
+		
+	}
+	
+	function uploadIcon(event){
+		event.preventDefault();
+		console.log(this);
+		let formData = new FormData(document.getElementById("uploadIcon"))
+		console.log("1"+formData);
+		formData.append("id",member.id);
+		console.log(typeof formData);
+		for (let pair of formData.entries()) {
+			  console.log(pair[0] + ': ' + pair[1]);
+			}
+		$.post({
+			url:"MemberIcon",
+			data:formData,			
+			processData: false,
+			contentType: false,
+			success:function(data){
+				let dataObj = JSON.stringify(data);
+  				alert("頭像更新成功");
+  				sessionStorage.removeItem('member');
+  				sessionStorage.setItem('member',dataObj);
+  				alert("sessionStorage.setItem('member',dataObj)結束(頭像)");
+  				alert("getData前");
+  				getData()
+  				alert("getData後");
+			},
+			error:function(jqXHR, textStatus, errorThrown){
+				window.location.href="./member.html";
+			}
+		});
+		
+	}
+	
 	
     </script>
 </head>
@@ -170,10 +259,15 @@
                         <!--頭像-->
                         <div class="member-avatar">
                             <div class="text-center">
+                                <form method="post" action="MemberIcon" enctype="multipart/form-data" id="uploadIcon" onsubmit="uploadIcon(event)">
                                 <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
                                 id="Icon" class="avatar img-circle img-thumbnail" alt="avatar">
                                 <h6>更換頭像</h6>
-                                <input type="file" class="text-center center-block file-upload select">
+                                <input type="file" class="text-center center-block"  id="file" name="Icon" onchange="showNewIcon(event)" accept="image/*" >
+                                <br>
+                                
+                                <input type="submit" name="upload" id="memberIconUpload" value="上傳">
+                                </form>
                             </div>
                             </hr><br>
                         </div>

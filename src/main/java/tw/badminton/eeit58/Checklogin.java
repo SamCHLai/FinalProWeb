@@ -18,9 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import tw.badminton.api.Member;
 
-
-@WebFilter(urlPatterns={"/getLogin"})
+//檢查是否為登入的狀況，如果不適登入狀況，回去首頁，如果是登入的狀況，往下一個servlet
+@WebFilter(urlPatterns={"/getLogin","/member.html","/memberIcon/"})
 public class Checklogin extends HttpFilter implements Filter {
+	private Member member;
+	
 	public void destroy() {
 
 	}
@@ -30,19 +32,44 @@ public class Checklogin extends HttpFilter implements Filter {
 		System.out.println("Checklogin doFilter");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse =(HttpServletResponse) response;
+		String httprequestedUri = httpRequest.getRequestURI();
+		System.out.println(httprequestedUri);
+//		會顯示瀏覽器中的url列中的資料，如下		
+//		/FinalProWeb/member.html
+//		如果是超連結過去的，也是會顯示超連結的路徑
+		String referer = httpRequest.getHeader("Referer");
+		//會顯示為從哪一個網頁的超連結過去，例如從首頁的超連結來的話，會印出http://localhost:8080/FinalProWeb/index.html
+		//直接用在瀏覽器列打url，是null
 		
+		member =(Member)httpRequest.getSession().getAttribute("member");
 //		String loginStatus = httpRequest.getHeader("isLogin");
 //		String path = httpRequest.getServletPath();
 //		System.out.println(path);		
 //		System.out.println(loginStatus);
+		System.out.println(referer);
 		
-		if(httpRequest.getSession().getAttribute("member") == null) {
+		
+		
+		if(referer == null) {
+			
+		}
+		
+		
+		
+		if(member == null) {
 			System.out.println("member ==null");
-			chain.doFilter(request, response);
+			chain.doFilter(request, response);	
+//			httpResponse.sendRedirect("./index.html");			
+
 		}else {
 			System.out.println("member !=null");
 			httpResponse.sendRedirect("./index.html");
-			
+//			if(httprequestedUri.contains("memberIcon")) {
+//				httpResponse.sendRedirect("./index.html");
+//			}else {
+//				chain.doFilter(request, response);	
+//			}
+		
 		}
 	}
 //		

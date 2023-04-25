@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+//取得login.html的網頁
 @WebServlet("/getLogin")
 public class getLogin extends HttpServlet {
 	
